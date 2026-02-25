@@ -29,6 +29,16 @@ export async function POST(req){
     const rec = { id, title, creator_email, attendees: (attendees||[]), date, start_time:start, end_time:end, status:'pending', created_at:now, updated_at:now };
     await kv.set(`reservation:${id}`, rec);
     await kv.sadd(`reservations:${date}`, id);
+
+    
+await kv.lpush(
+  'notifications',
+  {
+    message: `تم إنشاء حجز جديد: ${title} (${date} ${start}-${end})`,
+    created_at: new Date().toISOString()
+  }
+);
+
     await kv.lpush('notifications', { type:'created', reservation_id:id, message:`تم إنشاء حجز: ${title} (${date} ${start}-${end})`, created_at:now });
 
     // optional email via Resend later
