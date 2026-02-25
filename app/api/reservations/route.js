@@ -1,5 +1,5 @@
 import { kv } from '@vercel/kv';
-import { listByDate, overlap, time } from '../../common';
+import { listByDate, overlap, time } from '../common';
 
 export async function GET(req){
   const { searchParams } = new URL(req.url);
