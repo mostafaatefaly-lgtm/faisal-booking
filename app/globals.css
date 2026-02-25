@@ -1,1 +1,6 @@
-@import '../public/styles.css';
+/* app/globals.css */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #f8fafc; direction: rtl; color: #1e293b; }
+select, input, button { font-family: inherit; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner { width:32px;height:32px;border:3px solid #e2e8f0;border-top-color:#2563eb;border-radius:50%;animation:spin .7s linear infinite;margin:40px auto; }
