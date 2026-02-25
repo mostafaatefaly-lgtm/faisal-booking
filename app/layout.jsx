@@ -1,6 +1,6 @@
 
 // app/layout.jsx
-
+import './globals.css';
 export const metadata = {
   title: "حجز قاعة الاجتماعات",
   description: "نظام حجز قاعة الاجتماعات"
