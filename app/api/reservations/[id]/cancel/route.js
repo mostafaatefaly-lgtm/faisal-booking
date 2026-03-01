@@ -9,6 +9,15 @@ export async function POST(req, { params }){
   if(!rec) return new Response(JSON.stringify({ error:'غير موجود' }), { status:404 });
   rec.status='cancelled'; rec.updated_at = new Date().toISOString();
   await kv.set(key, rec);
-  await kv.lpush('notifications', { type:'cancelled', reservation_id:id, message:`تم إلغاء الحجز (${id})`, created_at: rec.updated_at });
+  
+await kv.lpush('notifications', {
+  message:`تم إلغاء الحجز رقم ${id} — ${rec.title} (${rec.date} ${rec.start_time}-${rec.end_time})`,
+  created_at: rec.updated_at
+});
+await kv.lpush(`notifications:${rec.creator_email}`, {
+  message:`❌ تم إلغاء حجزك — ${rec.title} (${rec.date} ${rec.start_time}-${rec.end_time})`,
+  created_at: rec.updated_at
+});
+
   return Response.json({ ok:true });
 }
