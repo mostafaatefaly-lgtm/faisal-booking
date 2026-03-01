@@ -80,6 +80,30 @@ export async function POST(req) {
       created_at: now
     });
 
+    // Send Email
+      import { sendMail } from '../_lib/mailer';
+
+// ... after kv.lpush(...) admin + user notifications:
+const adminTo = process.env.NOTIFY_ADMIN || '';
+if (adminTo) {
+  await sendMail({
+    to: adminTo,
+    subject: 'حجز جديد - قاعة الاجتماعات',
+    html: `<p><b>عنوان:</b> ${title}</p>
+           <p><b>التاريخ:</b> ${date}</p>
+           <p><b>الوقت:</b> ${start} - ${end}</p>
+           <p><b>من:</b> ${creator_email}</p>`
+  });
+}
+
+await sendMail({
+  to: creator_email,
+  subject: 'تم استلام طلب الحجز',
+  html: `<p>تم استلام طلب حجزك: <b>${title}</b></p>
+         <p>${date} — ${start} إلى ${end}</p>
+         <p>الحالة الحالية: <b>قيد الانتظار</b
+    
+
     return Response.json({ ok: true, id });
   } catch (e) {
     console.error('POST /reservations error', e);
