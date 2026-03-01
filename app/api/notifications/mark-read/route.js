@@ -1,3 +1,4 @@
+// app/api/notifications/mark-read/route.js
 export const dynamic = 'force-dynamic';
 import { kv } from '@vercel/kv';
 
@@ -8,7 +9,9 @@ export async function POST(req) {
       ? 'notif:last_read_at:admin'
       : (email ? `notif:last_read_at:${email}` : null);
 
-    if (!key) return new Response(JSON.stringify({ ok:false, error:'missing role/email' }), { status: 400 });
+    if (!key) {
+      return new Response(JSON.stringify({ ok:false, error:'missing role/email' }), { status: 400 });
+    }
 
     const now = new Date().toISOString();
     await kv.set(key, now);
