@@ -31,15 +31,29 @@ export async function POST(req){
     await kv.sadd(`reservations:${date}`, id);
 
     
-await kv.lpush(
-  'notifications',
-  {
-    message: `تم إنشاء حجز جديد: ${title} (${date} ${start}-${end})`,
-    created_at: new Date().toISOString()
-  }
-);
+- await kv.lpush(
+-   'notifications',
+-   {
+-     message: `تم إنشاء حجز جديد: ${title} (${date} ${start}-${end})`,
+-     created_at: new Date().toISOString()
+-   }
+- );
+-
+- await kv.lpush('notifications', {
+-   type:'created', reservation_id:id, message:`تم إنشاء حجز: ${title} (${date} ${start}-${end})`, created_at:now
+- });
 
-    await kv.lpush('notifications', { type:'created', reservation_id:id, message:`تم إنشاء حجز: ${title} (${date} ${start}-${end})`, created_at:now });
++ // Admin notification list
++ await kv.lpush('notifications', {
++   message: `تم إنشاء حجز جديد: ${title} (${date} ${start}-${end}) بواسطة ${creator_email}`,
++   created_at: now
++ });
++
++ // User-specific notification list
++ await kv.lpush(`notifications:${creator_email}`, {
++   message: `تم استلام طلب حجزك: ${title} (${date} ${start}-${end}) — الحالة: قيد الانتظار`,
++   created_at: now
++ });
 
     // optional email via Resend later
     return Response.json({ ok:true, id });
