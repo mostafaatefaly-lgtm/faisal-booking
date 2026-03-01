@@ -191,7 +191,9 @@ export default function Page() {
       <div style={s.loginWrap}>
         <div style={s.loginCard}>
           <div style={{textAlign:"center",marginBottom:20}}>
-             <div style={s.loginIcon}>   /logo.png </div>
+             <div style={s.loginIcon}>   
+  <img src="/logo.png" alt="Company Logo" style={{ width: 80, height: 80 }} />
+ </div>
             <h1 style={s.loginTitle}>نظام حجز قاعة إجتماعات شركة فيصل بن سعيدان</h1>
             <p style={s.loginSub}>سجّل دخولك للمتابعة</p>
           </div>
