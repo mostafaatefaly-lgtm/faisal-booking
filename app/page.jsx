@@ -236,7 +236,7 @@ export default function Page() {
     <div style={s.app}>
       <header style={s.header}>
         <div style={s.headerLeft}>
-          <span style={{ display:'flex', alignItems:'center', gap:8 }}>   <img src="/logo.png" alt="Company Logo" style={{ width: 32, height: 32 }} />   <span style={s.logo}>حجز القاعات</span> </span>
+          <span style={{ display:'flex', alignItems:'center', gap:8 }}>   <img src="/logo.png" alt="Company Logo" style={{ width: 80, height: 50 }} />   <span style={s.logo}>حجز القاعات</span> </span>
           {isAdmin && <span style={s.adminBadge}>مسؤول</span>}
         </div>
         <nav style={s.nav}>
