@@ -1,8 +1,7 @@
 export const dynamic = 'force-dynamic';
 
 import { kv } from '@vercel/kv';
-import { sendApprovedToUser } from '@/app/_lib/mailer';
-
+import { sendApprovedToUser } from '@/app/api/_lib/mailer';
 export async function POST(req, { params }) {
   const id = Number(params.id);
   const body = await req.json();
