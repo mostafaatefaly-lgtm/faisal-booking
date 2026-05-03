@@ -12,7 +12,8 @@
 
 import { kv } from '@vercel/kv';
 import { NextResponse } from 'next/server';
-import { sendNewBookingToAdmin } from '@/app/lib/email';
+import { sendNewBookingToAdmin } from '@/app/_lib/mailer';
+
 
 function generateId() {
   return Math.random().toString(36).substr(2, 9).toUpperCase();
