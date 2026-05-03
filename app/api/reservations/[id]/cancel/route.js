@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 
 import { kv } from '@vercel/kv';
-import { sendCancelledToUser } from '@/app/api/_lib/mailer';
+import { sendCancelledToUser } from '../../mailer';
 
 export async function POST(req, { params }) {
   const id = Number(params.id);
