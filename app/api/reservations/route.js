@@ -1,3 +1,5 @@
+import { sendNewBookingToAdmin } from './mailer';
+
 export const dynamic = 'force-dynamic';
 
 import { kv } from '@vercel/kv';
