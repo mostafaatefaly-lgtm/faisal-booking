@@ -69,6 +69,7 @@ export async function POST(req) {
 
     // Save reservation + index by date
     await kv.set(`reservation:${id}`, rec);
+    try { await sendNewBookingToAdmin(reservation); } catch(e) { console.error(e); }
     await kv.sadd(`reservations:${date}`, id);
 
     // Admin notifications list
