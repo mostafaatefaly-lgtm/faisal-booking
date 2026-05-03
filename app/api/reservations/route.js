@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import { sendNewBookingToAdmin } from './mailer';
 
 import { kv } from '@vercel/kv';
 import { listByDate, overlap, time } from '../common';
