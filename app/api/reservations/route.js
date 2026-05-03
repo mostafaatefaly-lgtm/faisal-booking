@@ -12,7 +12,7 @@
 
 import { kv } from '@vercel/kv';
 import { NextResponse } from 'next/server';
-import { sendNewBookingToAdmin } from '@/app/api/_lib/mailer';
+import { sendNewBookingToAdmin } from './mailer';
 
 
 function generateId() {
